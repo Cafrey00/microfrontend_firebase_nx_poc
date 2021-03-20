@@ -1,0 +1,125 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "placeme-poc",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "placeme-poc": {
+      "root": "apps/placeme-poc",
+      "sourceRoot": "apps/placeme-poc/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/placeme-poc",
+            "index": "apps/placeme-poc/src/index.html",
+            "main": "apps/placeme-poc/src/main.tsx",
+            "polyfills": "apps/placeme-poc/src/polyfills.ts",
+            "tsConfig": "apps/placeme-poc/tsconfig.app.json",
+            "assets": [
+              "apps/placeme-poc/src/favicon.ico",
+              "apps/placeme-poc/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/placeme-poc/src/environments/environment.ts",
+                  "with": "apps/placeme-poc/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "placeme-poc:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "placeme-poc:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/placeme-poc/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/placeme-poc"],
+          "options": {
+            "jestConfig": "apps/placeme-poc/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "placeme-poc-e2e": {
+      "root": "apps/placeme-poc-e2e",
+      "sourceRoot": "apps/placeme-poc-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/placeme-poc-e2e/cypress.json",
+            "tsConfig": "apps/placeme-poc-e2e/tsconfig.e2e.json",
+            "devServerTarget": "placeme-poc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "placeme-poc:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/placeme-poc-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
