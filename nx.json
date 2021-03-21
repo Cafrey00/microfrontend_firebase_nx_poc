@@ -1,34 +1,38 @@
 {
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "npmScope": "placeme-poc",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MDJmZjhkMTktNTNjNy00Y2YzLWIwNmEtOTg5YmQyY2MxMzkzfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
-    "placeme-poc": {
-      "tags": []
-    },
-    "placeme-poc-e2e": {
+    "placeme-poc": { "tags": [] },
+    "placeme-poc-e2e": { "tags": [], "implicitDependencies": ["placeme-poc"] },
+    "authorized-1": { "tags": [] },
+    "authorized-1-e2e": {
       "tags": [],
-      "implicitDependencies": ["placeme-poc"]
-    }
+      "implicitDependencies": ["authorized-1"]
+    },
+    "authorized-2": { "tags": [] },
+    "authorized-2-e2e": {
+      "tags": [],
+      "implicitDependencies": ["authorized-2"]
+    },
+    "common": { "tags": [] }
   }
 }

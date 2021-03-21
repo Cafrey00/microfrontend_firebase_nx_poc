@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import {BrowserRouter} from 'react-router-dom';
+
 import App from './app/app';
-import {BrowserRouter} from "react-router-dom";
 import {AuthProvider} from "@placeme-poc/common";
 
 ReactDOM.render(
